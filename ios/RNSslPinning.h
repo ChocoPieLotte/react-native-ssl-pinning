@@ -9,4 +9,3 @@
 @interface RNSslPinning : NSObject <RCTBridgeModule>
 
 @end
-  
