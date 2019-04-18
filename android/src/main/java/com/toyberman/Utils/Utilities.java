@@ -14,10 +14,6 @@ import java.io.OutputStream;
 
 import okhttp3.Request;
 
-/**
- * Created by Max Toyberman on 2/5/18.
- */
-
 public class Utilities {
 
     // Copy an InputStream to a File.

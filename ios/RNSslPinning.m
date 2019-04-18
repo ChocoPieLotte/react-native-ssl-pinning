@@ -8,6 +8,7 @@
 
 #import "RNSslPinning.h"
 #import "AFNetworking.h"
+#import "RCTHttpsControlURLProtocol.h"
 
 @interface RNSslPinning()
 
@@ -199,8 +200,13 @@ RCT_EXPORT_METHOD(fetch:(NSString *)url obj:(NSDictionary *)obj callback:(RCTRes
 //    manager.securityPolicy = policy;
 //
     // set policy (ssl pinning)
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSMutableArray * protocolsArray = [sessionConfiguration.protocolClasses mutableCopy];
+    [protocolsArray insertObject:[HttpsControlURLProtocol class] atIndex:0];
+    sessionConfiguration.protocolClasses = protocolsArray;
+
     AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:sessionConfiguration];
     manager.securityPolicy = policy;
 
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

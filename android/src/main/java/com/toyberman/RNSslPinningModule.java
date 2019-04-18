@@ -22,6 +22,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -162,7 +165,7 @@ public class RNSslPinningModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void fetch(String hostname, ReadableMap options, final Callback callback) {
+    public void fetch(String hostname, ReadableMap options, final Callback callback) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 
         final WritableMap response = Arguments.createMap();
         // With ssl pinning
