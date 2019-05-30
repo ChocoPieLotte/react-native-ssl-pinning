@@ -132,7 +132,9 @@ public class RNSslPinningModule extends ReactContextBaseJavaModule {
 
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
-                    map.putString(cookie.name(), cookie.value());
+                    if (cookie.value() != null && !cookie.value().isEmpty()) {
+                        map.putString(cookie.name(), cookie.value());
+                    }
                 }
             }
 

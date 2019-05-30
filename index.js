@@ -17,7 +17,11 @@ module.exports = {
 
             data.json = function() {
                 return Q.fcall(function() {
-                    return JSON.parse(data.bodyString);
+                    try {
+                        return JSON.parse(data.bodyString);
+                    } catch (e) {
+                        return {};
+                    }
                 });
             };
 
