@@ -167,6 +167,12 @@ public class RNSslPinningModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void removeAllCookies(final Promise promise) {
+        cookieStore.clear();
+        promise.resolve(null);
+    }
+
+    @ReactMethod
     public void fetch(String hostname, ReadableMap options, final Callback callback) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 
         final WritableMap response = Arguments.createMap();

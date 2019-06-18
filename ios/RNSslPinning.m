@@ -68,6 +68,17 @@ RCT_EXPORT_METHOD(removeCookieByName: (NSString *)cookieName
     
 }
 
+RCT_EXPORT_METHOD(
+                  removeAllCookies:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+        NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (NSHTTPCookie *c in cookieStorage.cookies) {
+            [cookieStorage deleteCookie:c];
+        }
+        resolve(nil);
+}
+
 RCT_EXPORT_METHOD(fetch:(NSString *)url obj:(NSDictionary *)obj callback:(RCTResponseSenderBlock)callback) {
     NSURL *u = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:u];

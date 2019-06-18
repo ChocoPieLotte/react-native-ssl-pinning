@@ -6,6 +6,7 @@ let Q = require('q');
 module.exports = {
     getCookies : RNSslPinning.getCookies,
     removeCookieByName: RNSslPinning.removeCookieByName,
+    removeAllCookies: RNSslPinning.removeAllCookies,
     fetch: function (url, obj, callback) {
         let deferred = Q.defer();
         RNSslPinning.fetch(url, obj, (err, res) => {
@@ -17,11 +18,7 @@ module.exports = {
 
             data.json = function() {
                 return Q.fcall(function() {
-                    try {
-                        return JSON.parse(data.bodyString);
-                    } catch (e) {
-                        return {};
-                    }
+                    return JSON.parse(data.bodyString);
                 });
             };
 

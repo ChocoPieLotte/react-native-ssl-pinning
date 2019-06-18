@@ -29,3 +29,4 @@ export namespace ReactNativeSSLPinning {
 export declare function fetch(url: string, options: ReactNativeSSLPinning.Options): Promise<ReactNativeSSLPinning.Response>;
 export declare function getCookies(name: string): Promise<ReactNativeSSLPinning.Cookies>;
 export declare function removeCookieByName(name: string): Promise<void>;
+export declare function removeAllCookies(): Promise<void>;
